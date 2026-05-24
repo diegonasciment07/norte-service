@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://norte-service-three.vercel.app/sitemap.xml
+Sitemap: https://norteservice.online/sitemap.xml
