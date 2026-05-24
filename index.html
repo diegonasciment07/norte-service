@@ -446,116 +446,61 @@
     }
 
     /* ================================================================
-       BENTO GRID — SERVIÇOS
+       SERVICES GRID
     ================================================================ */
-    .bento {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-auto-rows: 240px;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
-    .bento-card {
-      position: relative;
+    .svc-card {
+      background: var(--ns-navy-mid);
+      border: 1px solid rgba(255,255,255,0.06);
       border-radius: var(--radius-xl);
       overflow: hidden;
-      background: var(--ns-navy-mid);
-      border: 1px solid rgba(255,255,255,0.05);
-      transition: border-color 300ms ease, transform 400ms ease, box-shadow 300ms ease;
+      transition: border-color 300ms ease, transform 350ms ease, box-shadow 300ms ease;
       cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 1.5rem;
-      transform-style: preserve-3d;
-      will-change: transform;
     }
-    .bento-card:hover {
-      border-color: rgba(245,166,35,0.35);
-      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(245,166,35,0.15);
+    .svc-card:hover {
+      border-color: rgba(245,166,35,0.32);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
     }
-    .bento-card.span-2 { grid-column: span 2; }
-    .bento-card.span-2-row { grid-row: span 2; }
 
-    .bc-img {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      transition: transform 600ms ease;
-    }
-    .bento-card:hover .bc-img { transform: scale(1.06); }
-
-    .bc-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to top,
-        rgba(8,12,20,0.97) 0%,
-        rgba(8,12,20,0.55) 50%,
-        rgba(8,12,20,0.12) 100%
-      );
-      transition: opacity 300ms ease;
-    }
-    .bento-card:hover .bc-overlay { opacity: 0.85; }
-
-    .bc-tag {
-      position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
-      width: 36px; height: 36px;
-      background: rgba(8,12,20,0.7);
-      border: 1px solid rgba(245,166,35,0.2);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 0.875rem;
-      opacity: 0;
-      transform: translate(4px,-4px);
-      transition: all 300ms ease;
-      z-index: 3;
-    }
-    .bento-card:hover .bc-tag { opacity: 1; transform: translate(0,0); }
-
-    .bc-content {
-      position: relative;
-      z-index: 2;
-    }
-    .bc-icon {
-      width: 38px; height: 38px;
-      background: rgba(245,166,35,0.12);
-      border: 1px solid rgba(245,166,35,0.25);
-      border-radius: var(--radius-md);
-      display: grid;
-      place-items: center;
-      font-size: 1rem;
-      margin-bottom: 0.75rem;
-      transition: all 300ms ease;
-    }
-    .bento-card:hover .bc-icon {
-      background: var(--ns-gold);
-      border-color: var(--ns-gold);
-      transform: rotate(-8deg) scale(1.05);
-    }
-    .bc-name {
-      font-family: var(--font-display);
-      font-size: 1.3125rem;
-      letter-spacing: 0.04em;
-      line-height: 1.1;
-      margin-bottom: 0.375rem;
-    }
-    .bc-desc {
-      font-size: 0.8125rem;
-      color: var(--ns-gray-300);
-      line-height: 1.5;
-      max-height: 0;
+    .svc-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
       overflow: hidden;
-      transition: max-height 400ms ease, opacity 300ms ease;
-      opacity: 0;
     }
-    .bento-card:hover .bc-desc {
-      max-height: 4rem;
-      opacity: 1;
+    .svc-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 500ms ease;
+    }
+    .svc-card:hover .svc-photo img { transform: scale(1.05); }
+
+    .svc-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      border-top: 2px solid transparent;
+      transition: border-top-color 300ms ease;
+    }
+    .svc-card:hover .svc-body { border-top-color: var(--ns-gold); }
+
+    .svc-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--ns-white);
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+    .svc-desc {
+      font-size: 0.875rem;
+      color: var(--ns-gray-300);
+      line-height: 1.65;
     }
 
     /* ================================================================
@@ -916,9 +861,7 @@
        RESPONSIVE
     ================================================================ */
     @media (max-width: 1024px) {
-      .bento { grid-template-columns: repeat(2, 1fr); }
-      .bento-card.span-2 { grid-column: span 2; }
-      .bento-card.span-2-row { grid-row: span 1; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
       .stats-row { grid-template-columns: repeat(2, 1fr); row-gap: 3rem; }
       .cta-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
@@ -956,24 +899,8 @@
       }
       .proof-num { font-size: 1.875rem; }
 
-      /* Bento */
-      .bento {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-        grid-auto-rows: auto;
-      }
-      .bento-card {
-        min-height: 220px;
-        padding: 1.375rem;
-      }
-      .bento-card.span-2 { grid-column: span 1; }
-      .bento-card.span-2-row { grid-row: span 1; }
-
-      /* Em touch não existe hover — mostrar descrição sempre */
-      .bc-desc {
-        max-height: 5rem !important;
-        opacity: 1 !important;
-      }
+      /* Services grid */
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 0.875rem; }
 
       /* Stats */
       .stats-row { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
@@ -1037,10 +964,10 @@
       .proof-num { font-size: 1.625rem; }
       .proof-label { font-size: 0.6rem; }
 
-      /* Bento */
-      .bento { gap: 0.625rem; }
-      .bento-card { min-height: 200px; padding: 1.125rem; }
-      .bc-name { font-size: 1.125rem; }
+      /* Services grid */
+      .services-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .svc-title { font-size: 0.9375rem; }
+      .svc-body { padding: 1rem; }
 
       /* Stats belt */
       .stats-belt { padding: 2rem 0; }
@@ -1200,86 +1127,118 @@
         <p class="section-sub">Soluções completas para residências e empresas em Curitiba, Florianópolis e região.</p>
       </div>
 
-      <div class="bento">
-        <!-- Linha 1 -->
-        <div class="bento-card span-2 js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/telhado.png'); background-position: center 30%;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">🏠</div>
-            <div class="bc-name">TELHADOS</div>
-            <div class="bc-desc">Lavagem, manutenção e pintura com produtos de alta durabilidade. Calhas e rufos inclusos.</div>
+      <div class="services-grid">
+
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/telhado.png" alt="Lavagem, Manutenção e Pintura de Telhado" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Lavagem, Manutenção e Pintura de Telhado</h3>
+            <p class="svc-desc">Serviço completo de limpeza, reparo e pintura de telhados com produtos de alta durabilidade</p>
           </div>
         </div>
 
-        <div class="bento-card js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/eletrica.png'); background-position: center 20%;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">⚡</div>
-            <div class="bc-name">ELÉTRICA</div>
-            <div class="bc-desc">Instalações e reparos com profissionais certificados.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/reformas.png" alt="Construção e Reformas" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Construção e Reformas</h3>
+            <p class="svc-desc">Execução de obras, reformas e melhorias residenciais e comerciais com qualidade</p>
           </div>
         </div>
 
-        <!-- Linha 2 -->
-        <div class="bento-card js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/pintura.png'); background-position: center center;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">🎨</div>
-            <div class="bc-name">PINTURA</div>
-            <div class="bc-desc">Interna e externa com acabamento impecável.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/pintura.png" alt="Pinturas em Geral" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Pinturas em Geral</h3>
+            <p class="svc-desc">Pintura interna e externa de paredes, portas, janelas e móveis com acabamento profissional</p>
           </div>
         </div>
 
-        <div class="bento-card js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/reformas.png'); background-position: center 40%;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">🔨</div>
-            <div class="bc-name">REFORMAS</div>
-            <div class="bc-desc">Obras residenciais e comerciais com qualidade e prazo.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/caixa-dagua.png" alt="Lavagem e Manutenção de Caixa d'Água" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Lavagem e Manutenção de Caixa d'Água</h3>
+            <p class="svc-desc">Limpeza profunda, higienização e reparos em caixas d'água com produtos adequados</p>
           </div>
         </div>
 
-        <div class="bento-card js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/hidraulica.png'); background-position: center center;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">🔧</div>
-            <div class="bc-name">HIDRÁULICA</div>
-            <div class="bc-desc">Encanamentos, caça vazamentos e desentupimento especializado.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/calhas.png" alt="Limpeza e Manutenção de Calhas em Altura" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Limpeza e Manutenção de Calhas em Altura</h3>
+            <p class="svc-desc">Limpeza especializada de calhas, rufos e condutores verticais com segurança</p>
           </div>
         </div>
 
-        <!-- Linha 3 -->
-        <div class="bento-card span-2 js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/caixa-dagua.png'); background-position: center 35%;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">💧</div>
-            <div class="bc-name">CAIXA D'ÁGUA & DESENTUPIMENTO</div>
-            <div class="bc-desc">Limpeza profunda, higienização certificada e desentupimento com máquina especializada.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/eletrica.png" alt="Instalação e Manutenção Elétrica" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Instalação e Manutenção Elétrica</h3>
+            <p class="svc-desc">Serviços elétricos residenciais, comerciais e industriais com profissionais certificados</p>
           </div>
         </div>
 
-        <div class="bento-card js-scale-in">
-          <div class="bc-img" style="background-image:url('Imagens/moveis.png'); background-position: center 25%;"></div>
-          <div class="bc-overlay"></div>
-          <div class="bc-tag">↗</div>
-          <div class="bc-content">
-            <div class="bc-icon">🪑</div>
-            <div class="bc-name">MÓVEIS & FIXAÇÕES</div>
-            <div class="bc-desc">Montagem, desmontagem e instalações em geral.</div>
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/hidraulica.png" alt="Instalação e Manutenção Hidráulica" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Instalação e Manutenção Hidráulica</h3>
+            <p class="svc-desc">Reparos, instalações e manutenção em tubulações, paredes e pisos com encanamentos</p>
           </div>
         </div>
+
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/moveis.png" alt="Manutenção e Montagem de Móveis" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Manutenção e Montagem de Móveis</h3>
+            <p class="svc-desc">Montagem, desmontagem, reparo e ajuste de móveis de todos os tipos e marcas</p>
+          </div>
+        </div>
+
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/fixacoes.png" alt="Fixações em Geral" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Fixações em Geral</h3>
+            <p class="svc-desc">Instalação de quadros, prateleiras, suportes, TV, cortinas e outros itens na parede</p>
+          </div>
+        </div>
+
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/desentupimento.png" alt="Desentupimento" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Desentupimento</h3>
+            <p class="svc-desc">Desentupimento de pias, vasos, ralos, fossas e caixas de gordura com máquina especializada</p>
+          </div>
+        </div>
+
+        <div class="svc-card js-scale-in">
+          <div class="svc-photo">
+            <img src="Imagens/caca-vazamentos.png" alt="Caça Vazamentos" loading="lazy">
+          </div>
+          <div class="svc-body">
+            <h3 class="svc-title">Caça Vazamentos</h3>
+            <p class="svc-desc">Detecção e reparo de vazamentos em tubulações, paredes e pisos com equipamento especializado</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1683,31 +1642,6 @@
       }
       countUp('.cnt');
       countUp('.cnt-gold');
-
-      /* --------------------------------------------------------
-         BENTO MAGNETIC HOVER (3D tilt)
-      -------------------------------------------------------- */
-      document.querySelectorAll('.bento-card').forEach(card => {
-        card.addEventListener('mousemove', e => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-          const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-          gsap.to(card, {
-            rotateY:  x * 5,
-            rotateX: -y * 5,
-            duration: 0.5,
-            ease: 'power2.out',
-            transformPerspective: 900
-          });
-        });
-        card.addEventListener('mouseleave', () => {
-          gsap.to(card, {
-            rotateY: 0, rotateX: 0,
-            duration: 0.8,
-            ease: 'elastic.out(1, 0.4)'
-          });
-        });
-      });
 
       /* --------------------------------------------------------
          TESTIMONIALS SWIPER
