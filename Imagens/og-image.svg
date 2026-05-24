@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1200" height="630" viewBox="0 0 1200 630">
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0D1B2A"/>
+
+  <!-- Grid pattern overlay -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#F5A623" stroke-width="0.4" opacity="0.12"/>
+    </pattern>
+    <linearGradient id="fadeLeft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0D1B2A" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#0D1B2A" stop-opacity="0.7"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1B2A"/>
+      <stop offset="100%" stop-color="#080C14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="25%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#F5A623" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#F5A623" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Barra dourada esquerda -->
+  <rect x="0" y="0" width="6" height="630" fill="#F5A623"/>
+
+  <!-- Bloco de conteúdo esquerdo -->
+  <!-- Badge superior -->
+  <rect x="80" y="100" width="340" height="36" rx="18" fill="none" stroke="#F5A623" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="106" cy="118" r="5" fill="#F5A623"/>
+  <text x="122" y="123" font-family="Arial, Helvetica, sans-serif" font-size="13"
+        font-weight="700" fill="#F5A623" letter-spacing="2">CURITIBA &amp; FLORIANÓPOLIS</text>
+
+  <!-- Título principal -->
+  <text x="80" y="220" font-family="Impact, Arial Black, sans-serif"
+        font-size="82" font-weight="900" fill="#FFFFFF" letter-spacing="2">NORTE</text>
+  <text x="80" y="315" font-family="Impact, Arial Black, sans-serif"
+        font-size="82" font-weight="900" fill="#F5A623" letter-spacing="2">SERVICE</text>
+
+  <!-- Linha separadora -->
+  <rect x="80" y="338" width="60" height="3" rx="2" fill="#F5A623"/>
+
+  <!-- Subtítulo -->
+  <text x="80" y="380" font-family="Arial, Helvetica, sans-serif"
+        font-size="22" fill="#A8B0C0" letter-spacing="0.5">Manutenção Profissional com Garantia</text>
+
+  <!-- Serviços -->
+  <text x="80" y="422" font-family="Arial, Helvetica, sans-serif"
+        font-size="17" fill="#6B7585">Telhados · Reformas · Elétrica · Hidráulica · Pintura</text>
+
+  <!-- Botão CTA -->
+  <rect x="80" y="460" width="280" height="54" rx="27" fill="#F5A623"/>
+  <text x="220" y="493" font-family="Arial, Helvetica, sans-serif"
+        font-size="19" font-weight="700" fill="#0D1B2A" text-anchor="middle"
+        letter-spacing="0.5">Orçamento Gratuito</text>
+
+  <!-- URL -->
+  <text x="80" y="580" font-family="Arial, Helvetica, sans-serif"
+        font-size="16" fill="#3A4155">norte-service-three.vercel.app</text>
+
+  <!-- Bloco direito — logo -->
+  <rect x="720" y="0" width="480" height="630" fill="url(#fadeLeft)"/>
+
+  <!-- Ícone decorativo direito (casa/serviços) -->
+  <g transform="translate(860, 160)" opacity="0.12">
+    <!-- Casa simplificada -->
+    <polygon points="120,0 240,100 0,100" fill="#F5A623"/>
+    <rect x="20" y="100" width="200" height="150" fill="#F5A623"/>
+    <rect x="85" y="150" width="70" height="100" fill="#0D1B2A"/>
+    <!-- Sol -->
+    <circle cx="190" cy="40" r="30" fill="#F5A623"/>
+  </g>
+
+  <!-- Stats lado direito -->
+  <g transform="translate(840, 340)">
+    <!-- Stat 1 -->
+    <rect x="0" y="0" width="140" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+    <text x="70" y="42" font-family="Impact, Arial Black, sans-serif" font-size="36"
+          fill="#F5A623" text-anchor="middle">100+</text>
+    <text x="70" y="68" font-family="Arial, sans-serif" font-size="12"
+          fill="#6B7585" text-anchor="middle" letter-spacing="1">CLIENTES</text>
+
+    <!-- Stat 2 -->
+    <rect x="160" y="0" width="140" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+    <text x="230" y="42" font-family="Impact, Arial Black, sans-serif" font-size="36"
+          fill="#F5A623" text-anchor="middle">98%</text>
+    <text x="230" y="68" font-family="Arial, sans-serif" font-size="12"
+          fill="#6B7585" text-anchor="middle" letter-spacing="1">SATISFAÇÃO</text>
+
+    <!-- Stat 3 -->
+    <rect x="80" y="110" width="140" height="90" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(245,166,35,0.2)" stroke-width="1"/>
+    <text x="150" y="152" font-family="Impact, Arial Black, sans-serif" font-size="36"
+          fill="#F5A623" text-anchor="middle">24H</text>
+    <text x="150" y="178" font-family="Arial, sans-serif" font-size="12"
+          fill="#6B7585" text-anchor="middle" letter-spacing="1">ATENDIMENTO</text>
+  </g>
+
+</svg>
