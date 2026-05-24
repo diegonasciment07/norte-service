@@ -165,15 +165,14 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 1.25rem 0;
-      transition: padding 300ms ease, background 300ms ease, border-color 300ms ease;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0.875rem 0;
+      transition: padding 300ms ease, box-shadow 300ms ease;
     }
     .header.is-scrolled {
-      background: rgba(8,12,20,0.92);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(245,166,35,0.12);
-      padding: 0.875rem 0;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+      padding: 0.625rem 0;
     }
     .header-inner {
       display: flex;
@@ -184,26 +183,16 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-    }
-    .logo-badge {
-      background: rgba(255,255,255,0.96);
-      border-radius: var(--radius-lg);
-      padding: 6px 14px;
-      display: flex;
-      align-items: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.15);
-      transition: box-shadow 300ms ease, transform 300ms ease;
-    }
-    .logo:hover .logo-badge {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(245,166,35,0.3);
-      transform: translateY(-1px);
     }
     .logo-img {
-      height: 42px;
+      height: 56px;
       width: auto;
       display: block;
       object-fit: contain;
+      transition: transform 350ms cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .logo:hover .logo-img {
+      transform: scale(1.08);
     }
 
     /* ================================================================
@@ -214,7 +203,7 @@
       position: relative;
       display: flex;
       align-items: center;
-      padding-top: 5rem;
+      padding-top: 6rem;
       overflow: hidden;
     }
 
@@ -805,8 +794,24 @@
     ================================================================ */
     .footer {
       background: var(--ns-black);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 2.25rem 0;
+    }
+    .footer-logo-strip {
+      background: #ffffff;
+      padding: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 3px solid var(--ns-gold);
+    }
+    .footer-logo-strip .logo-img {
+      height: 64px;
+      transition: transform 350ms cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .footer-logo-strip a:hover .logo-img {
+      transform: scale(1.08);
+    }
+    .footer-body {
+      padding: 2rem 0;
     }
     .footer-inner {
       display: flex;
@@ -843,11 +848,11 @@
     }
     .footer-copy {
       font-size: 0.75rem;
-      color: var(--ns-gray-700);
+      color: var(--ns-gray-500);
     }
     .footer-credit {
       font-size: 0.6875rem;
-      color: var(--ns-gray-700);
+      color: var(--ns-gray-500);
     }
     .footer-credit a {
       color: var(--ns-gold);
@@ -936,8 +941,9 @@
       .section-title { font-size: clamp(2rem, 8vw, 2.75rem); }
 
       /* Header */
-      .header { padding: 0.875rem 0; }
-      .logo-img { height: 36px; }
+      .header { padding: 0.75rem 0; }
+      .logo-img { height: 44px; }
+      .footer-logo-strip .logo-img { height: 52px; }
 
       /* Hero */
       .hero { padding: 6rem 0 4rem; }
@@ -1017,9 +1023,7 @@
     <div class="container">
       <div class="header-inner">
         <a href="#inicio" class="logo">
-          <div class="logo-badge">
-            <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
-          </div>
+          <img src="Imagens/logo-clean.png" alt="Norte Service" class="logo-img">
         </a>
         <a class="btn btn-gold btn-sm"
            href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F"
@@ -1476,44 +1480,51 @@
 
   <!-- ============================================================ FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <!-- Linha superior: logo + contatos + redes -->
-      <div class="footer-inner">
-        <a href="#inicio" class="logo">
-          <div class="logo-badge" style="padding:4px 10px;">
-            <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img" style="height:32px;">
-          </div>
-        </a>
-        <div class="footer-contacts">
-          <a class="footer-contact" href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
-            📱 Curitiba: (41) 99676-8324
-          </a>
-          <a class="footer-contact" href="https://wa.me/5548991012627?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
-            📱 Florianópolis: (48) 99101-2627
-          </a>
-          <a class="footer-contact" href="mailto:norteservico2025@gmail.com">
-            ✉️ norteservico2025@gmail.com
-          </a>
-          <a class="footer-contact footer-social" href="https://www.instagram.com/norteservice10/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            Instagram
-          </a>
-          <a class="footer-contact footer-social" href="https://www.facebook.com/profile.php?id=61579336403097" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
-          </a>
-        </div>
-      </div>
 
-      <!-- Linha inferior: copyright centralizado -->
-      <div class="footer-bottom">
-        <div class="footer-copy">© 2026 Norte Service · Todos os direitos reservados.</div>
-        <div class="footer-credit">
-          Desenvolvido por
-          <a href="https://alvoaguia.com.br" target="_blank" rel="noopener">Alvo Águia Tech</a>
+    <!-- Faixa branca com logo em destaque -->
+    <div class="footer-logo-strip">
+      <a href="#inicio" class="logo">
+        <img src="Imagens/logo-clean.png" alt="Norte Service" class="logo-img">
+      </a>
+    </div>
+
+    <!-- Corpo escuro: contatos + copyright -->
+    <div class="footer-body">
+      <div class="container">
+        <div class="footer-inner">
+          <div class="footer-contacts">
+            <a class="footer-contact" href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
+              Curitiba: (41) 99676-8324
+            </a>
+            <a class="footer-contact" href="https://wa.me/5548991012627?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
+              Florianópolis: (48) 99101-2627
+            </a>
+            <a class="footer-contact" href="mailto:norteservico2025@gmail.com">
+              norteservico2025@gmail.com
+            </a>
+          </div>
+          <div class="footer-contacts">
+            <a class="footer-contact footer-social" href="https://www.instagram.com/norteservice10/" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              Instagram
+            </a>
+            <a class="footer-contact footer-social" href="https://www.facebook.com/profile.php?id=61579336403097" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">© 2026 Norte Service · Todos os direitos reservados.</div>
+          <div class="footer-credit">
+            Desenvolvido por
+            <a href="https://alvoaguia.com.br" target="_blank" rel="noopener">Alvo Águia Tech</a>
+          </div>
         </div>
       </div>
     </div>
+
   </footer>
 
   <!-- ================================================================
