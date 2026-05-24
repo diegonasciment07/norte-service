@@ -167,30 +167,15 @@
       align-items: center;
       gap: 0.75rem;
     }
-    .logo-mark {
-      width: 42px; height: 42px;
-      background: linear-gradient(135deg, var(--ns-gold), var(--ns-gold-dark));
-      border-radius: var(--radius-md);
-      display: grid;
-      place-items: center;
-      font-size: 1.125rem;
-      box-shadow: var(--shadow-gold);
-      flex-shrink: 0;
-    }
-    .logo-text { line-height: 1.1; }
-    .logo-name {
+    .logo-img {
+      height: 48px;
+      width: auto;
       display: block;
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      letter-spacing: 0.1em;
+      object-fit: contain;
+      filter: brightness(1.05);
+      transition: filter 300ms ease;
     }
-    .logo-sub {
-      display: block;
-      font-size: 0.5625rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ns-gold);
-    }
+    .logo:hover .logo-img { filter: brightness(1.15); }
 
     /* ================================================================
        HERO
@@ -916,11 +901,7 @@
     <div class="container">
       <div class="header-inner">
         <a href="#inicio" class="logo">
-          <div class="logo-mark">🏗️</div>
-          <div class="logo-text">
-            <span class="logo-name">NORTE SERVICE</span>
-            <span class="logo-sub">Manutenção Profissional</span>
-          </div>
+          <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
         </a>
         <a class="btn btn-gold btn-sm"
            href="https://wa.me/5541996768324?text=Quero%20um%20orçamento%20gratuito!"
@@ -1348,11 +1329,7 @@
     <div class="container">
       <div class="footer-inner">
         <a href="#inicio" class="logo">
-          <div class="logo-mark" style="width:34px;height:34px;font-size:0.875rem;">🏗️</div>
-          <div class="logo-text">
-            <span class="logo-name" style="font-size:1.0625rem;">NORTE SERVICE</span>
-            <span class="logo-sub">© 2026 · Todos os direitos reservados</span>
-          </div>
+          <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
         </a>
         <div class="footer-contacts">
           <a class="footer-contact" href="https://wa.me/5541996768324" target="_blank" rel="noopener">
@@ -1365,7 +1342,13 @@
             ✉️ norteservico2025@gmail.com
           </a>
         </div>
-        <div class="footer-copy">Manutenção profissional com garantia.</div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.25rem;">
+          <div class="footer-copy">© 2026 Norte Service · Todos os direitos reservados.</div>
+          <div style="font-size:0.6875rem;color:var(--ns-gray-700);">
+            Desenvolvido por <a href="https://alvoaguia.com.br" target="_blank" rel="noopener"
+              style="color:var(--ns-gold);text-decoration:none;font-weight:600;">Alvo Águia Tech</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>
