@@ -1684,7 +1684,7 @@
         const floripa = ['Florianópolis','São José','Palhoça','Biguaçu'];
         const numero  = floripa.includes(cidade) ? '5548991012627' : '5541996768324';
 
-        const msg = `Olá Norte Service! Vi o site de vocês e gostaria de mais informações sobre os serviços de manutenção. Podem me ajudar? 👋\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
+        const msg = `Olá Norte Service! Vi o site de vocês e gostaria de mais informações sobre os serviços de manutenção. Podem me ajudar?\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
 
         window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
       });
