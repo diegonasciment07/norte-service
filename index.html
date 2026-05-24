@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <!-- GSAP carregado no head para garantir set() antes do render -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <style>
     /* ================================================================
@@ -892,14 +895,7 @@
       .cta-grid { grid-template-columns: 1fr; }
     }
 
-    /* ================================================================
-       GSAP INIT STATES
-    ================================================================ */
-    .js-fade-up    { opacity: 0; transform: translateY(48px); }
-    .js-fade-left  { opacity: 0; transform: translateX(-48px); }
-    .js-fade-right { opacity: 0; transform: translateX(48px); }
-    .js-fade-in    { opacity: 0; }
-    .js-scale-in   { opacity: 0; transform: scale(0.9) translateY(24px); }
+    /* GSAP sets initial states via JS — no CSS opacity:0 to avoid blank sections if CDN fails */
   </style>
 </head>
 
@@ -1377,182 +1373,203 @@
   <!-- ================================================================
        SCRIPTS
   ================================================================ -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
     /* ----------------------------------------------------------
-       HEADER scroll state
+       SETAR ESTADOS INICIAIS VIA GSAP (não CSS)
+       — garante que se GSAP falhar, o conteúdo fica visível
     ---------------------------------------------------------- */
-    const hdr = document.getElementById('main-header');
-    window.addEventListener('scroll', () => {
-      hdr.classList.toggle('is-scrolled', window.scrollY > 60);
-    }, { passive: true });
+    window.addEventListener('DOMContentLoaded', () => {
 
-    /* ----------------------------------------------------------
-       HERO parallax
-    ---------------------------------------------------------- */
-    gsap.to('#hero-parallax', {
-      yPercent: 18,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 1
+      // Estados iniciais via gsap.set (invisível antes de animar)
+      gsap.set('.js-fade-up',    { opacity: 0, y: 48 });
+      gsap.set('.js-fade-left',  { opacity: 0, x: -48 });
+      gsap.set('.js-fade-right', { opacity: 0, x: 48 });
+      gsap.set('.js-fade-in',    { opacity: 0 });
+      gsap.set('.js-scale-in',   { opacity: 0, scale: 0.91, y: 28 });
+
+      /* --------------------------------------------------------
+         HEADER scroll state
+      -------------------------------------------------------- */
+      const hdr = document.getElementById('main-header');
+      window.addEventListener('scroll', () => {
+        hdr.classList.toggle('is-scrolled', window.scrollY > 60);
+      }, { passive: true });
+
+      /* --------------------------------------------------------
+         HERO parallax
+      -------------------------------------------------------- */
+      gsap.to('#hero-parallax', {
+        yPercent: 18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+
+      /* --------------------------------------------------------
+         HERO entrance — timeline correta, sem .to() com from:{}
+      -------------------------------------------------------- */
+      gsap.set('.hero-eyebrow', { opacity: 0, y: 20 });
+      gsap.set('.hero-title .word', { opacity: 0, y: 80 });
+      gsap.set('.hero-sub',     { opacity: 0, y: 30 });
+      gsap.set('.hero-actions', { opacity: 0, y: 24 });
+      gsap.set('.hero-proof > div', { opacity: 0, y: 20 });
+
+      // Remover classes js-* do hero para não conflitar com ScrollTrigger
+      document.querySelectorAll('.hero .js-fade-up, .hero .js-fade-in').forEach(el => {
+        el.classList.remove('js-fade-up', 'js-fade-in', 'js-fade-left', 'js-fade-right');
+      });
+
+      const heroTl = gsap.timeline({ delay: 0.15 });
+      heroTl
+        .to('.hero-eyebrow',     { opacity: 1, y: 0, duration: 0.7,  ease: 'power3.out' })
+        .to('.hero-title .word', { opacity: 1, y: 0, duration: 0.9,  ease: 'power4.out', stagger: 0.13 }, '-=0.3')
+        .to('.hero-sub',         { opacity: 1, y: 0, duration: 0.7,  ease: 'power3.out' }, '-=0.45')
+        .to('.hero-actions',     { opacity: 1, y: 0, duration: 0.6,  ease: 'power3.out' }, '-=0.35')
+        .to('.hero-proof > div', { opacity: 1, y: 0, duration: 0.5,  ease: 'power3.out', stagger: 0.09 }, '-=0.2');
+
+      /* --------------------------------------------------------
+         SCROLL REVEAL — seções fora do hero
+      -------------------------------------------------------- */
+      gsap.utils.toArray('.js-fade-up').forEach(el => {
+        gsap.to(el, {
+          opacity: 1, y: 0,
+          duration: 0.85, ease: 'power3.out', clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('.js-fade-left').forEach(el => {
+        gsap.to(el, {
+          opacity: 1, x: 0,
+          duration: 0.85, ease: 'power3.out', clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('.js-fade-right').forEach(el => {
+        gsap.to(el, {
+          opacity: 1, x: 0,
+          duration: 0.85, ease: 'power3.out', clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('.js-fade-in').forEach(el => {
+        gsap.to(el, {
+          opacity: 1,
+          duration: 0.9, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      gsap.utils.toArray('.js-scale-in').forEach((el, i) => {
+        gsap.to(el, {
+          opacity: 1, scale: 1, y: 0,
+          duration: 0.75, ease: 'power3.out', delay: i * 0.05,
+          clearProps: 'transform',
+          scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
+        });
+      });
+
+      /* --------------------------------------------------------
+         COUNTER ANIMATION
+      -------------------------------------------------------- */
+      function countUp(selector) {
+        document.querySelectorAll(selector).forEach(el => {
+          const target = parseInt(el.dataset.to, 10);
+          gsap.fromTo({ v: 0 }, { v: 0 }, {
+            v: target,
+            duration: 2.2,
+            ease: 'power2.out',
+            onUpdate() { el.textContent = Math.round(this.targets()[0].v); },
+            scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+          });
+        });
       }
-    });
+      countUp('.cnt');
+      countUp('.cnt-gold');
 
-    /* ----------------------------------------------------------
-       HERO entrance timeline
-    ---------------------------------------------------------- */
-    const heroTl = gsap.timeline({ delay: 0.2 });
-    heroTl
-      .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out',
-          from: { opacity: 0, y: 20 } })
-      .from('.hero-title .word', {
-          opacity: 0, y: 80, duration: 0.9, ease: 'power4.out', stagger: 0.15
-        }, '-=0.3')
-      .from('.hero-sub',     { opacity: 0, y: 30, duration: 0.7, ease: 'power3.out' }, '-=0.4')
-      .from('.hero-actions', { opacity: 0, y: 24, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-      .from('.hero-proof > div', {
-          opacity: 0, y: 20, duration: 0.5, ease: 'power3.out', stagger: 0.1
-        }, '-=0.2');
-
-    /* ----------------------------------------------------------
-       SCROLL REVEAL — generic helpers
-    ---------------------------------------------------------- */
-    const revealConfig = (x = 0, y = 48) => ({
-      opacity: 0, x, y,
-      duration: 0.85,
-      ease: 'power3.out',
-      clearProps: 'all'
-    });
-
-    gsap.utils.toArray('.js-fade-up').forEach(el => {
-      gsap.from(el, { ...revealConfig(0, 48),
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-      });
-    });
-
-    gsap.utils.toArray('.js-fade-left').forEach(el => {
-      gsap.from(el, { ...revealConfig(-48, 0),
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-      });
-    });
-
-    gsap.utils.toArray('.js-fade-right').forEach(el => {
-      gsap.from(el, { ...revealConfig(48, 0),
-        scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' }
-      });
-    });
-
-    gsap.utils.toArray('.js-fade-in').forEach(el => {
-      gsap.from(el, { opacity: 0, duration: 0.9, ease: 'power2.out',
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-      });
-    });
-
-    gsap.utils.toArray('.js-scale-in').forEach((el, i) => {
-      gsap.from(el, {
-        opacity: 0, scale: 0.91, y: 32,
-        duration: 0.75, ease: 'power3.out', delay: i * 0.06,
-        scrollTrigger: { trigger: el, start: 'top 90%', toggleActions: 'play none none none' }
-      });
-    });
-
-    /* ----------------------------------------------------------
-       COUNTER ANIMATION
-    ---------------------------------------------------------- */
-    function countUp(selector) {
-      document.querySelectorAll(selector).forEach(el => {
-        const target = parseInt(el.dataset.to, 10);
-        gsap.to({ v: 0 }, {
-          v: target,
-          duration: 2.2,
-          ease: 'power2.out',
-          onUpdate() { el.textContent = Math.round(this.targets()[0].v); },
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+      /* --------------------------------------------------------
+         BENTO MAGNETIC HOVER (3D tilt)
+      -------------------------------------------------------- */
+      document.querySelectorAll('.bento-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+          const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+          gsap.to(card, {
+            rotateY:  x * 5,
+            rotateX: -y * 5,
+            duration: 0.5,
+            ease: 'power2.out',
+            transformPerspective: 900
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            rotateY: 0, rotateX: 0,
+            duration: 0.8,
+            ease: 'elastic.out(1, 0.4)'
+          });
         });
       });
-    }
-    countUp('.cnt');
-    countUp('.cnt-gold');
 
-    /* ----------------------------------------------------------
-       BENTO MAGNETIC HOVER (3D tilt)
-    ---------------------------------------------------------- */
-    document.querySelectorAll('.bento-card').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-        const y = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-        gsap.to(card, {
-          rotateY:  x * 5,
-          rotateX: -y * 5,
-          duration: 0.5,
-          ease: 'power2.out',
-          transformPerspective: 900
-        });
+      /* --------------------------------------------------------
+         TESTIMONIALS SWIPER
+      -------------------------------------------------------- */
+      new Swiper('.swiper-testimonials', {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        autoplay: { delay: 4500, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        breakpoints: {
+          640:  { slidesPerView: 1.2 },
+          900:  { slidesPerView: 2   },
+          1100: { slidesPerView: 3   }
+        }
       });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, {
-          rotateY: 0, rotateX: 0,
-          duration: 0.8,
-          ease: 'elastic.out(1, 0.4)'
-        });
-      });
-    });
 
-    /* ----------------------------------------------------------
-       TESTIMONIALS SWIPER
-    ---------------------------------------------------------- */
-    new Swiper('.swiper-testimonials', {
-      slidesPerView: 1,
-      spaceBetween: 20,
-      autoplay: { delay: 4500, disableOnInteraction: false },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      breakpoints: {
-        640:  { slidesPerView: 1.2 },
-        900:  { slidesPerView: 2   },
-        1100: { slidesPerView: 3   }
-      }
-    });
-
-    /* ----------------------------------------------------------
-       FORM → WHATSAPP
-    ---------------------------------------------------------- */
-    document.getElementById('lead-form').addEventListener('submit', e => {
-      e.preventDefault();
-      const nome    = document.getElementById('f-nome').value.trim();
-      const tel     = document.getElementById('f-tel').value.trim();
-      const cidade  = document.getElementById('f-cidade').value;
-      const servico = document.getElementById('f-servico').value;
-
-      if (!nome || !tel || !cidade || !servico) return;
-
-      const floripa = ['Florianópolis','São José','Palhoça','Biguaçu'];
-      const numero  = floripa.includes(cidade) ? '5548991012627' : '5541996768324';
-
-      const msg = `Olá, Norte Service! 👋\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}\n\nQuero solicitar um orçamento gratuito!`;
-
-      window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
-    });
-
-    /* ----------------------------------------------------------
-       SMOOTH ANCHOR SCROLL
-    ---------------------------------------------------------- */
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const target = document.querySelector(a.getAttribute('href'));
-        if (!target) return;
+      /* --------------------------------------------------------
+         FORM → WHATSAPP
+      -------------------------------------------------------- */
+      document.getElementById('lead-form').addEventListener('submit', e => {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const nome    = document.getElementById('f-nome').value.trim();
+        const tel     = document.getElementById('f-tel').value.trim();
+        const cidade  = document.getElementById('f-cidade').value;
+        const servico = document.getElementById('f-servico').value;
+
+        if (!nome || !tel || !cidade || !servico) return;
+
+        const floripa = ['Florianópolis','São José','Palhoça','Biguaçu'];
+        const numero  = floripa.includes(cidade) ? '5548991012627' : '5541996768324';
+
+        const msg = `Olá, Norte Service! 👋\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}\n\nQuero solicitar um orçamento gratuito!`;
+
+        window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
       });
-    });
+
+      /* --------------------------------------------------------
+         SMOOTH ANCHOR SCROLL
+      -------------------------------------------------------- */
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+    }); // end DOMContentLoaded
   </script>
 </body>
 </html>
