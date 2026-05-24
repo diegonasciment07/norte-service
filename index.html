@@ -527,65 +527,76 @@
     }
 
     /* ================================================================
-       FEATURES
+       SOBRE — 2 colunas: texto + foto real
     ================================================================ */
-    .features-grid {
+    .sobre-section {
+      background: var(--ns-off-white);
+      padding: 5.5rem 0;
+    }
+    .sobre-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
-      margin-top: 3.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 4.5rem;
+      align-items: center;
     }
-    .feat-card {
-      background: var(--ns-navy-mid);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: var(--radius-xl);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 300ms ease, transform 400ms ease;
+    .sobre-label { color: var(--ns-gold-dark); }
+    .sobre-label::before { background: var(--ns-gold-dark); }
+    .sobre-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 4vw, 3.25rem);
+      color: var(--ns-navy);
+      line-height: 1.0;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.25rem;
     }
-    .feat-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--ns-gold);
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform 350ms ease;
+    .sobre-desc {
+      font-size: 1rem;
+      color: #374151;
+      line-height: 1.8;
+      margin-bottom: 2rem;
     }
-    .feat-card:hover {
-      border-color: rgba(245,166,35,0.18);
-      transform: translateY(-4px);
+    .sobre-checklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+      margin-bottom: 2.5rem;
     }
-    .feat-card:hover::before { transform: scaleY(1); }
-
-    .feat-icon {
-      width: 52px; height: 52px;
-      background: linear-gradient(135deg, rgba(245,166,35,0.14), rgba(245,166,35,0.04));
-      border: 1px solid rgba(245,166,35,0.22);
-      border-radius: var(--radius-lg);
+    .sobre-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+      color: #1F2937;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .sobre-check {
+      width: 22px; height: 22px;
+      min-width: 22px;
+      background: rgba(6,214,160,0.12);
+      border: 1.5px solid rgba(6,214,160,0.4);
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      font-size: 1.375rem;
-      margin-bottom: 1.5rem;
-      transition: all 400ms var(--ease-spring);
+      color: #059669;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      margin-top: 1px;
     }
-    .feat-card:hover .feat-icon {
-      background: var(--ns-gold);
-      border-color: var(--ns-gold);
-      transform: scale(1.1) rotate(-6deg);
+    .sobre-photo {
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      aspect-ratio: 3 / 4;
     }
-    .feat-title {
-      font-weight: 700;
-      font-size: 1.0625rem;
-      margin-bottom: 0.5rem;
+    .sobre-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 15%;
+      display: block;
+      transition: transform 600ms ease;
     }
-    .feat-desc {
-      font-size: 0.9375rem;
-      color: var(--ns-gray-300);
-      line-height: 1.7;
-    }
+    .sobre-photo:hover img { transform: scale(1.04); }
 
     /* ================================================================
        TESTIMONIALS
@@ -909,9 +920,9 @@
       /* Stats */
       .stats-row { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
 
-      /* Features */
-      .features-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-      .feat-card { padding: 1.625rem; }
+      /* Sobre */
+      .sobre-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .sobre-photo { aspect-ratio: 4/3; order: -1; }
 
       /* CTA + Form */
       .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -978,8 +989,9 @@
       .stats-belt { padding: 2rem 0; }
       .stats-row { gap: 1.5rem; }
 
-      /* Features */
-      .feat-card { padding: 1.375rem; }
+      /* Sobre */
+      .sobre-section { padding: 3rem 0; }
+      .sobre-photo { aspect-ratio: 4/3; }
 
       /* Testimonials */
       .testi-card { padding: 1.5rem; }
@@ -1271,39 +1283,56 @@
     </div>
   </div>
 
-  <!-- ============================================================ DIFERENCIAIS -->
-  <section class="section section-dark" id="sobre">
+  <!-- ============================================================ SOBRE -->
+  <section class="sobre-section" id="sobre">
     <div class="container">
-      <div class="section-head js-fade-up">
-        <div class="section-label">Por que nos escolher</div>
-        <h2 class="section-title">COMPROMISSO COM<br>A EXCELÊNCIA</h2>
-        <p class="section-sub">Cada detalhe pensado para que você tenha paz de espírito do início ao fim do serviço.</p>
-      </div>
+      <div class="sobre-grid">
 
-      <div class="features-grid">
-        <div class="feat-card js-fade-left">
-          <div class="feat-icon">🛡️</div>
-          <div class="feat-title">Garantia em Todos os Serviços</div>
-          <div class="feat-desc">Trabalhamos com garantia real em 100% dos serviços. Problemas após a entrega? Resolvemos sem custo.</div>
+        <!-- Conteúdo esquerdo -->
+        <div class="js-fade-left">
+          <div class="section-label sobre-label">Sobre a Norte Service</div>
+          <h2 class="sobre-title">QUEM SOMOS<br>E COMO<br>TRABALHAMOS</h2>
+          <p class="sobre-desc">
+            A Norte Service é referência em manutenção residencial e comercial. Com anos de experiência,
+            nossa equipe certificada oferece soluções rápidas, seguras e com garantia real em todos os serviços —
+            de Curitiba a Florianópolis e região.
+          </p>
+
+          <div class="sobre-checklist">
+            <div class="sobre-item">
+              <div class="sobre-check">✓</div>
+              <span>Garantia em 100% dos serviços realizados</span>
+            </div>
+            <div class="sobre-item">
+              <div class="sobre-check">✓</div>
+              <span>Atendimento de emergência em até 24h</span>
+            </div>
+            <div class="sobre-item">
+              <div class="sobre-check">✓</div>
+              <span>Equipe certificada em elétrica, hidráulica e construção civil</span>
+            </div>
+            <div class="sobre-item">
+              <div class="sobre-check">✓</div>
+              <span>Orçamento 100% gratuito e preço transparente</span>
+            </div>
+            <div class="sobre-item">
+              <div class="sobre-check">✓</div>
+              <span>Atendimento em Curitiba, Florianópolis e Região</span>
+            </div>
+          </div>
+
+          <a class="btn btn-gold btn-lg"
+             href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F"
+             target="_blank" rel="noopener">
+            Solicitar Orçamento Grátis
+          </a>
         </div>
 
-        <div class="feat-card js-fade-right">
-          <div class="feat-icon">⚡</div>
-          <div class="feat-title">Atendimento em até 24h</div>
-          <div class="feat-desc">Emergências não esperam. Nossa equipe está disponível para responder e atender com máxima agilidade.</div>
+        <!-- Foto real da equipe -->
+        <div class="sobre-photo js-fade-right">
+          <img src="Imagens/servico-norte.png" alt="Equipe Norte Service em ação — serviço de telhado" loading="lazy">
         </div>
 
-        <div class="feat-card js-fade-left">
-          <div class="feat-icon">🏆</div>
-          <div class="feat-title">Equipe Certificada</div>
-          <div class="feat-desc">Profissionais qualificados e treinados, com certificações em elétrica, hidráulica e construção civil.</div>
-        </div>
-
-        <div class="feat-card js-fade-right">
-          <div class="feat-icon">💬</div>
-          <div class="feat-title">Orçamento Grátis e Transparente</div>
-          <div class="feat-desc">Preço justo, sem surpresas. Você sabe exatamente o que vai pagar antes de qualquer serviço começar.</div>
-        </div>
       </div>
     </div>
   </section>
