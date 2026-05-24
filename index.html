@@ -923,16 +923,150 @@
       .cta-grid { grid-template-columns: 1fr; gap: 3rem; }
     }
 
+    /* ── Tablet / mobile largo ─────────────────────────────────── */
     @media (max-width: 768px) {
-      .section { padding: 4rem 0; }
-      .stats-belt { padding: 3rem 0; }
-      .bento { grid-template-columns: 1fr; grid-auto-rows: 200px; }
-      .bento-card.span-2 { grid-column: span 1; }
-      .features-grid { grid-template-columns: 1fr; }
-      .hero-proof { gap: 1.5rem; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .container { padding: 0 1.25rem; }
+
+      /* Header */
       .header .btn { display: none; }
-      .cta-grid { grid-template-columns: 1fr; }
+
+      /* Seções */
+      .section { padding: 3.5rem 0; }
+      .section-head { margin-bottom: 2.25rem; }
+      .stats-belt { padding: 2.75rem 0; }
+
+      /* Hero */
+      .hero { padding: 7rem 0 4.5rem; }
+      .hero-content { max-width: 100%; }
+      .hero-sub { max-width: 100%; }
+      .hero-actions {
+        flex-direction: column;
+        gap: 0.875rem;
+      }
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+      .hero-proof {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem 2rem;
+        padding-top: 1.5rem;
+      }
+      .proof-num { font-size: 1.875rem; }
+
+      /* Bento */
+      .bento {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        grid-auto-rows: auto;
+      }
+      .bento-card {
+        min-height: 220px;
+        padding: 1.375rem;
+      }
+      .bento-card.span-2 { grid-column: span 1; }
+      .bento-card.span-2-row { grid-row: span 1; }
+
+      /* Em touch não existe hover — mostrar descrição sempre */
+      .bc-desc {
+        max-height: 5rem !important;
+        opacity: 1 !important;
+      }
+
+      /* Stats */
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+      /* Features */
+      .features-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+      .feat-card { padding: 1.625rem; }
+
+      /* CTA + Form */
+      .cta-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cta-title { margin-bottom: 0.875rem; }
+
+      /* Footer */
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+      .footer-contacts {
+        flex-direction: column;
+        gap: 0.875rem;
+      }
+      .footer-bottom { margin-top: 1.25rem; }
+    }
+
+    /* ── iPhone e telas pequenas (< 480px) ──────────────────────── */
+    @media (max-width: 480px) {
+      .container { padding: 0 1rem; }
+
+      /* Seções */
+      .section { padding: 3rem 0; }
+      .section-head { margin-bottom: 2rem; }
+      .section-title { font-size: clamp(2rem, 8vw, 2.75rem); }
+
+      /* Header */
+      .header { padding: 0.875rem 0; }
+      .logo-img { height: 36px; }
+
+      /* Hero */
+      .hero { padding: 6rem 0 4rem; }
+      .hero-eyebrow {
+        font-size: 0.625rem;
+        letter-spacing: 0.08em;
+        padding: 0.3rem 0.75rem;
+      }
+      .hero-title { font-size: clamp(3rem, 12vw, 5rem); margin-bottom: 1.125rem; }
+      .hero-sub {
+        font-size: 0.9375rem;
+        margin-bottom: 2rem;
+        line-height: 1.65;
+      }
+      .hero-actions { gap: 0.75rem; margin-bottom: 2rem; }
+      .btn-lg {
+        padding: 0.9375rem 1.5rem;
+        font-size: 0.875rem;
+      }
+      .hero-proof {
+        gap: 1rem 1.5rem;
+        padding-top: 1.25rem;
+      }
+      .proof-num { font-size: 1.625rem; }
+      .proof-label { font-size: 0.6rem; }
+
+      /* Bento */
+      .bento { gap: 0.625rem; }
+      .bento-card { min-height: 200px; padding: 1.125rem; }
+      .bc-name { font-size: 1.125rem; }
+
+      /* Stats belt */
+      .stats-belt { padding: 2rem 0; }
+      .stats-row { gap: 1.5rem; }
+
+      /* Features */
+      .feat-card { padding: 1.375rem; }
+
+      /* Testimonials */
+      .testi-card { padding: 1.5rem; }
+
+      /* Form */
+      .form-card { padding: 1.5rem 1.125rem; border-radius: var(--radius-xl); }
+      .form-input, .form-select { padding: 0.8125rem 0.875rem; font-size: 0.9375rem; }
+
+      /* WhatsApp flutuante */
+      .wa-float { bottom: 1rem; right: 1rem; padding: 0.75rem; }
+      .wa-label { display: none; }
+      .wa-float:hover { padding: 0.75rem; }
+
+      /* Footer */
+      .footer { padding: 2rem 0; }
+      .footer-contacts { gap: 0.75rem; }
+      .footer-contact { font-size: 0.75rem; }
+      .footer-copy { font-size: 0.6875rem; }
+      .footer-credit { font-size: 0.625rem; }
     }
 
     /* GSAP sets initial states via JS — no CSS opacity:0 to avoid blank sections if CDN fails */
