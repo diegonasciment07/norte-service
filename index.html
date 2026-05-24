@@ -601,46 +601,87 @@
     /* ================================================================
        TESTIMONIALS
     ================================================================ */
-    .testi-section { padding: 6rem 0; overflow: hidden; }
+    .testi-section { padding: 5.5rem 0; overflow: hidden; }
 
-    .swiper-testimonials {
-      overflow: visible;
+    .testi-swiper-wrap {
+      position: relative;
+      padding: 0 3.5rem;
       margin-top: 3rem;
     }
+    .swiper-testimonials { overflow: visible; }
+
     .testi-card {
       background: var(--ns-navy-mid);
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
       border-radius: var(--radius-xl);
-      padding: 2rem;
-      height: auto;
-      transition: border-color 300ms ease;
+      padding: 2.25rem;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
     }
-    .swiper-slide-active .testi-card { border-color: rgba(245,166,35,0.22); }
-    .testi-stars { color: var(--ns-gold); font-size: 0.875rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .testi-card:hover {
+      border-color: rgba(245,166,35,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    }
+    .swiper-slide-active .testi-card { border-color: rgba(245,166,35,0.28); }
+
+    .testi-quote {
+      font-size: 5.5rem;
+      line-height: 0.75;
+      color: var(--ns-gold);
+      opacity: 0.18;
+      font-family: Georgia, 'Times New Roman', serif;
+      margin-bottom: 0.375rem;
+      user-select: none;
+    }
+    .testi-stars { color: var(--ns-gold); font-size: 0.875rem; margin-bottom: 0.875rem; letter-spacing: 2px; }
     .testi-text {
       font-size: 0.9375rem;
       color: var(--ns-gray-300);
-      line-height: 1.75;
+      line-height: 1.8;
       font-style: italic;
       margin-bottom: 1.5rem;
+      flex: 1;
     }
-    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .testi-divider { width: 36px; height: 2px; background: var(--ns-gold); border-radius: 2px; margin-bottom: 1.25rem; opacity: 0.45; }
+    .testi-author { display: flex; align-items: center; gap: 0.875rem; }
     .testi-av {
-      width: 42px; height: 42px;
+      width: 50px; height: 50px;
       background: linear-gradient(135deg, var(--ns-gold), var(--ns-gold-dark));
       border-radius: 50%;
       display: grid;
       place-items: center;
       font-weight: 800;
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       color: var(--ns-navy);
       flex-shrink: 0;
+      box-shadow: 0 0 0 3px rgba(245,166,35,0.18);
     }
-    .testi-name { font-weight: 700; font-size: 0.9375rem; }
-    .testi-loc  { font-size: 0.75rem; color: var(--ns-gray-500); margin-top: 1px; }
+    .testi-name { font-weight: 700; font-size: 0.9375rem; color: var(--ns-white); }
+    .testi-loc  { font-size: 0.75rem; color: var(--ns-gold); margin-top: 2px; font-weight: 600; }
+    .testi-service { font-size: 0.6875rem; color: var(--ns-gray-500); margin-top: 1px; }
 
-    .swiper-pagination-bullet { background: var(--ns-gray-500); }
+    .swiper-pagination-bullet { background: var(--ns-gray-500); opacity: 1; }
     .swiper-pagination-bullet-active { background: var(--ns-gold); }
+
+    .swiper-button-prev, .swiper-button-next {
+      color: var(--ns-gold) !important;
+      --swiper-navigation-size: 17px;
+      width: 44px !important; height: 44px !important;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(245,166,35,0.28);
+      border-radius: 50%;
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+    .swiper-button-prev:hover, .swiper-button-next:hover {
+      background: rgba(245,166,35,0.1);
+      border-color: rgba(245,166,35,0.55);
+    }
+    .swiper-button-prev { left: 0; }
+    .swiper-button-next { right: 0; }
 
     /* ================================================================
        CTA + FORM
@@ -835,7 +876,7 @@
     .footer-contact {
       font-size: 0.8125rem;
       color: #4B5563;
-      font-weight: 500;
+      font-weight: 700;
       transition: color 200ms ease;
     }
     .footer-contact:hover { color: var(--ns-gold-dark); }
@@ -994,6 +1035,8 @@
       .sobre-photo { aspect-ratio: 4/3; }
 
       /* Testimonials */
+      .testi-swiper-wrap { padding: 0; }
+      .swiper-button-prev, .swiper-button-next { display: none !important; }
       .testi-card { padding: 1.5rem; }
 
       /* Form */
@@ -1345,67 +1388,117 @@
         <h2 class="section-title">O QUE DIZEM<br>NOSSOS CLIENTES</h2>
       </div>
 
-      <div class="swiper swiper-testimonials js-fade-in">
-        <div class="swiper-wrapper">
+      <div class="testi-swiper-wrap js-fade-in">
+        <div class="swiper swiper-testimonials">
+          <div class="swiper-wrapper">
 
-          <div class="swiper-slide">
-            <div class="testi-card">
-              <div class="testi-stars">★★★★★</div>
-              <p class="testi-text">"Excelente serviço! Consertaram o telhado da minha casa com agilidade e profissionalismo total. Do orçamento à entrega, tudo impecável. Recomendo sem hesitar!"</p>
-              <div class="testi-author">
-                <div class="testi-av">JS</div>
-                <div>
-                  <div class="testi-name">João Silva</div>
-                  <div class="testi-loc">Curitiba, PR</div>
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Consertaram o telhado da minha casa com agilidade e profissionalismo total. Do orçamento à entrega, tudo impecável. Recomendo sem hesitar!</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">JS</div>
+                  <div>
+                    <div class="testi-name">João Silva</div>
+                    <div class="testi-loc">Curitiba, PR</div>
+                    <div class="testi-service">Manutenção de Telhado</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="swiper-slide">
-            <div class="testi-card">
-              <div class="testi-stars">★★★★★</div>
-              <p class="testi-text">"Reparo elétrico urgente e eles atenderam no mesmo dia! Equipe muito competente, rápida e o preço ficou dentro do esperado. Voltarei sempre que precisar."</p>
-              <div class="testi-author">
-                <div class="testi-av">MS</div>
-                <div>
-                  <div class="testi-name">Maria Santos</div>
-                  <div class="testi-loc">São José dos Pinhais, PR</div>
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Reparo elétrico urgente e eles atenderam no mesmo dia! Equipe muito competente, rápida e o preço ficou dentro do esperado. Voltarei sempre que precisar.</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">MS</div>
+                  <div>
+                    <div class="testi-name">Maria Santos</div>
+                    <div class="testi-loc">São José dos Pinhais, PR</div>
+                    <div class="testi-service">Instalação Elétrica</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="swiper-slide">
-            <div class="testi-card">
-              <div class="testi-stars">★★★★★</div>
-              <p class="testi-text">"Limpeza da caixa d'água e desentupimento no mesmo dia. Trabalho limpo, equipe educada e preço justo. Fiquei muito satisfeito e já indiquei para vizinhos!"</p>
-              <div class="testi-author">
-                <div class="testi-av">CO</div>
-                <div>
-                  <div class="testi-name">Carlos Oliveira</div>
-                  <div class="testi-loc">Florianópolis, SC</div>
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Limpeza da caixa d'água e desentupimento no mesmo dia. Trabalho limpo, equipe educada e preço justo. Já indiquei para três vizinhos!</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">CO</div>
+                  <div>
+                    <div class="testi-name">Carlos Oliveira</div>
+                    <div class="testi-loc">Florianópolis, SC</div>
+                    <div class="testi-service">Limpeza de Caixa d'Água</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="swiper-slide">
-            <div class="testi-card">
-              <div class="testi-stars">★★★★★</div>
-              <p class="testi-text">"Reforma completa na minha casa — do piso à pintura. Entregaram no prazo, dentro do orçamento e com qualidade muito superior ao que esperava. Top!"</p>
-              <div class="testi-author">
-                <div class="testi-av">AL</div>
-                <div>
-                  <div class="testi-name">Ana Lima</div>
-                  <div class="testi-loc">Colombo, PR</div>
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Reforma completa — do piso à pintura. Entregaram no prazo, dentro do orçamento e com qualidade muito superior ao que esperava. Serviço de altíssimo nível!</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">AL</div>
+                  <div>
+                    <div class="testi-name">Ana Lima</div>
+                    <div class="testi-loc">Colombo, PR</div>
+                    <div class="testi-service">Reformas</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Vazamento difícil de localizar e eles encontraram em menos de 30 minutos. Eficiência impressionante, resolveram tudo sem quebrar nada desnecessariamente.</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">RF</div>
+                  <div>
+                    <div class="testi-name">Roberto Ferreira</div>
+                    <div class="testi-loc">Pinhais, PR</div>
+                    <div class="testi-service">Caça Vazamentos</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div class="testi-card">
+                <div class="testi-quote">"</div>
+                <div class="testi-stars">★★★★★</div>
+                <p class="testi-text">Pintura externa e limpeza de calhas, tudo feito com muita segurança e organização. Equipe pontual, deixou tudo limpo após o serviço. Nota 10!</p>
+                <div class="testi-divider"></div>
+                <div class="testi-author">
+                  <div class="testi-av">PM</div>
+                  <div>
+                    <div class="testi-name">Patrícia Moura</div>
+                    <div class="testi-loc">Florianópolis, SC</div>
+                    <div class="testi-service">Pintura e Calhas</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination" style="margin-top:2rem;position:static;text-align:center;"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
-        <div class="swiper-pagination" style="margin-top:2rem;position:static;text-align:center;"></div>
       </div>
     </div>
   </section>
@@ -1520,10 +1613,10 @@
           </a>
 
           <div class="footer-contacts">
-            <a class="footer-contact" href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
+            <a class="footer-contact" href="#contato" onclick="event.preventDefault();window.open('https://wa.me/5541996768324?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F','_blank')">
               Curitiba: (41) 99676-8324
             </a>
-            <a class="footer-contact" href="https://wa.me/5548991012627?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
+            <a class="footer-contact" href="#contato" onclick="event.preventDefault();window.open('https://wa.me/5548991012627?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F','_blank')">
               Florianópolis: (48) 99101-2627
             </a>
             <a class="footer-contact" href="mailto:norteservico2025@gmail.com">
@@ -1691,12 +1784,14 @@
       new Swiper('.swiper-testimonials', {
         slidesPerView: 1,
         spaceBetween: 20,
-        autoplay: { delay: 4500, disableOnInteraction: false },
+        loop: true,
+        autoplay: { delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true },
         pagination: { el: '.swiper-pagination', clickable: true },
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
         breakpoints: {
-          640:  { slidesPerView: 1.2 },
-          900:  { slidesPerView: 2   },
-          1100: { slidesPerView: 3   }
+          600:  { slidesPerView: 1.15, spaceBetween: 16 },
+          900:  { slidesPerView: 2,    spaceBetween: 20 },
+          1100: { slidesPerView: 3,    spaceBetween: 24 }
         }
       });
 
