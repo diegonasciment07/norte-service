@@ -167,15 +167,25 @@
       align-items: center;
       gap: 0.75rem;
     }
+    .logo-badge {
+      background: rgba(255,255,255,0.96);
+      border-radius: var(--radius-lg);
+      padding: 6px 14px;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.15);
+      transition: box-shadow 300ms ease, transform 300ms ease;
+    }
+    .logo:hover .logo-badge {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(245,166,35,0.3);
+      transform: translateY(-1px);
+    }
     .logo-img {
-      height: 48px;
+      height: 42px;
       width: auto;
       display: block;
       object-fit: contain;
-      filter: brightness(1.05);
-      transition: filter 300ms ease;
     }
-    .logo:hover .logo-img { filter: brightness(1.15); }
 
     /* ================================================================
        HERO
@@ -901,7 +911,9 @@
     <div class="container">
       <div class="header-inner">
         <a href="#inicio" class="logo">
-          <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
+          <div class="logo-badge">
+            <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
+          </div>
         </a>
         <a class="btn btn-gold btn-sm"
            href="https://wa.me/5541996768324?text=Quero%20um%20orçamento%20gratuito!"
@@ -1329,7 +1341,9 @@
     <div class="container">
       <div class="footer-inner">
         <a href="#inicio" class="logo">
-          <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img">
+          <div class="logo-badge" style="padding:4px 10px;">
+            <img src="Imagens/logo sem fundo.png" alt="Norte Service" class="logo-img" style="height:32px;">
+          </div>
         </a>
         <div class="footer-contacts">
           <a class="footer-contact" href="https://wa.me/5541996768324" target="_blank" rel="noopener">
