@@ -107,9 +107,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  <!-- GSAP carregado no head para garantir set() antes do render -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
   <style>
     /* ================================================================
@@ -255,6 +252,32 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
+    }
+    .header-phones {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.125rem;
+    }
+    .header-phone-link {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ns-navy);
+      letter-spacing: 0.02em;
+      transition: color 200ms ease;
+      white-space: nowrap;
+    }
+    .header-phone-link:hover { color: var(--ns-gold-dark); }
+    .header-phone-city {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: var(--ns-gray-500);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 768px) {
+      .header-phones { display: none; }
     }
 
     .logo {
@@ -287,7 +310,7 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80') center/cover no-repeat;
+      background: url('Imagens/servico-norte.png') center 20%/cover no-repeat;
       will-change: transform;
     }
 
@@ -1134,7 +1157,9 @@
       .footer-credit { font-size: 0.625rem; }
     }
 
-    /* GSAP sets initial states via JS — no CSS opacity:0 to avoid blank sections if CDN fails */
+    /* Estado inicial dos elementos animados — evita FOUC se GSAP demorar a carregar */
+    .js-fade-up, .js-fade-left, .js-fade-right, .js-fade-in { opacity: 0; }
+    .js-scale-in { opacity: 0; transform: scale(0.91) translateY(28px); }
   </style>
 </head>
 
@@ -1157,9 +1182,15 @@
         <a href="#inicio" class="logo">
           <img src="Imagens/logo-clean.png" alt="Norte Service" class="logo-img">
         </a>
-        <a class="btn btn-gold btn-sm"
-           href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F"
-           target="_blank" rel="noopener">
+        <div class="header-phones">
+          <a class="header-phone-link" href="tel:+5541996768324">
+            <span class="header-phone-city">Curitiba</span> (41) 99676-8324
+          </a>
+          <a class="header-phone-link" href="tel:+5548991012627">
+            <span class="header-phone-city">Florianópolis</span> (48) 99101-2627
+          </a>
+        </div>
+        <a class="btn btn-gold btn-sm" href="#orcamento">
           💬 Orçamento Grátis
         </a>
       </div>
@@ -1193,9 +1224,7 @@
         </p>
 
         <div class="hero-actions js-fade-up">
-          <a class="btn btn-gold btn-lg"
-             href="https://wa.me/5541996768324?text=Olá%20Norte%20Service!%20Vi%20o%20site%20de%20vocês%20e%20gostaria%20de%20mais%20informações%20sobre%20os%20serviços%20de%20manutenção.%20Podem%20me%20ajudar%3F"
-             target="_blank" rel="noopener">
+          <a class="btn btn-gold btn-lg" href="#orcamento">
             💬 Solicitar Orçamento Grátis
           </a>
           <a class="btn btn-outline btn-lg" href="#servicos">
@@ -1205,15 +1234,15 @@
 
         <div class="hero-proof js-fade-up">
           <div>
-            <div class="proof-num"><span class="cnt" data-to="100">0</span>+</div>
-            <div class="proof-label">Clientes Atendidos</div>
+            <div class="proof-num"><span class="cnt" data-to="500">0</span>+</div>
+            <div class="proof-label">Serviços Realizados</div>
           </div>
           <div>
             <div class="proof-num"><span class="cnt" data-to="98">0</span>%</div>
             <div class="proof-label">Satisfação</div>
           </div>
           <div>
-            <div class="proof-num"><span class="cnt" data-to="5">0</span> Anos</div>
+            <div class="proof-num"><span class="cnt" data-to="6">0</span> Anos</div>
             <div class="proof-label">de Experiência</div>
           </div>
           <div>
@@ -1379,20 +1408,32 @@
     </div>
   </section>
 
+  <!-- ============================================================ CTA MEIO -->
+  <div style="background:var(--ns-navy);padding:3rem 0;text-align:center;border-top:1px solid rgba(255,255,255,0.05);">
+    <div class="container">
+      <p class="js-fade-up" style="font-size:1.125rem;color:var(--ns-gray-300);margin-bottom:1.25rem;line-height:1.6;">
+        Tem algum problema em casa ou no comércio? <strong style="color:var(--ns-white);">A gente resolve.</strong>
+      </p>
+      <a class="btn btn-gold btn-lg js-fade-up" href="#orcamento">
+        💬 Solicitar Orçamento Grátis
+      </a>
+    </div>
+  </div>
+
   <!-- ============================================================ STATS BELT -->
   <div class="stats-belt">
     <div class="container">
       <div class="stats-row">
         <div class="stat-block js-scale-in">
-          <div class="stat-num"><span class="cnt-gold" data-to="100">0</span><span class="stat-suf">+</span></div>
-          <div class="stat-lbl">Clientes Atendidos</div>
+          <div class="stat-num"><span class="cnt-gold" data-to="500">0</span><span class="stat-suf">+</span></div>
+          <div class="stat-lbl">Serviços Realizados</div>
         </div>
         <div class="stat-block js-scale-in">
           <div class="stat-num"><span class="cnt-gold" data-to="98">0</span><span class="stat-suf">%</span></div>
           <div class="stat-lbl">Taxa de Satisfação</div>
         </div>
         <div class="stat-block js-scale-in">
-          <div class="stat-num"><span class="cnt-gold" data-to="5">0</span></div>
+          <div class="stat-num"><span class="cnt-gold" data-to="6">0</span></div>
           <div class="stat-lbl">Anos de Experiência</div>
         </div>
         <div class="stat-block js-scale-in">
@@ -1607,15 +1648,9 @@
             <form id="lead-form" novalidate>
 
               <div class="form-grp">
-                <label class="form-lbl" for="f-nome">Nome Completo</label>
+                <label class="form-lbl" for="f-nome">Seu nome</label>
                 <input class="form-input" id="f-nome" name="nome" type="text"
-                       placeholder="Seu nome completo" required autocomplete="name">
-              </div>
-
-              <div class="form-grp">
-                <label class="form-lbl" for="f-tel">WhatsApp</label>
-                <input class="form-input" id="f-tel" name="telefone" type="tel"
-                       placeholder="(41) 99999-9999" required autocomplete="tel">
+                       placeholder="Como podemos te chamar?" required autocomplete="name">
               </div>
 
               <div class="form-grp">
@@ -1731,6 +1766,8 @@
   <!-- ================================================================
        SCRIPTS
   ================================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -1878,16 +1915,15 @@
       document.getElementById('lead-form').addEventListener('submit', e => {
         e.preventDefault();
         const nome    = document.getElementById('f-nome').value.trim();
-        const tel     = document.getElementById('f-tel').value.trim();
         const cidade  = document.getElementById('f-cidade').value;
         const servico = document.getElementById('f-servico').value;
 
-        if (!nome || !tel || !cidade || !servico) return;
+        if (!nome || !cidade || !servico) return;
 
         const floripa = ['Florianópolis','São José','Palhoça','Biguaçu'];
         const numero  = floripa.includes(cidade) ? '5548991012627' : '5541996768324';
 
-        const msg = `Olá Norte Service! Vi o site de vocês e gostaria de mais informações sobre os serviços de manutenção. Podem me ajudar?\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
+        const msg = `Olá Norte Service! Vi o site de vocês e gostaria de orçamento. Podem me ajudar?\n\n*Nome:* ${nome}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
 
         if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: servico, content_category: cidade });
         window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
