@@ -1889,7 +1889,17 @@
 
         const msg = `Olá Norte Service! Vi o site de vocês e gostaria de mais informações sobre os serviços de manutenção. Podem me ajudar?\n\n*Nome:* ${nome}\n*Telefone:* ${tel}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
 
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: servico, content_category: cidade });
         window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+
+      /* --------------------------------------------------------
+         WHATSAPP BUTTON CLICKS → Contact event
+      -------------------------------------------------------- */
+      document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+        el.addEventListener('click', () => {
+          if (typeof fbq !== 'undefined') fbq('track', 'Contact');
+        });
       });
 
       /* --------------------------------------------------------
