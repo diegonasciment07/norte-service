@@ -256,11 +256,14 @@
     }
     .header-phones {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.125rem;
+      flex-direction: row;
+      align-items: center;
+      gap: 1.25rem;
     }
     .header-phone-link {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
       font-size: 0.75rem;
       font-weight: 700;
       color: var(--ns-navy);
@@ -269,6 +272,14 @@
       white-space: nowrap;
     }
     .header-phone-link:hover { color: var(--ns-gold-dark); }
+    .header-phone-link + .header-phone-link::before {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 1.25rem;
+      background: rgba(0,0,0,0.15);
+      margin-right: 0.25rem;
+    }
     .header-phone-city {
       font-size: 0.6rem;
       font-weight: 600;
