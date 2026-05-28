@@ -303,7 +303,13 @@
       position: relative;
       display: flex;
       align-items: center;
-      padding-top: 6rem;
+      padding-top: 9rem;
+      padding-bottom: 3rem;
+    }
+
+    .hero-bg-clip {
+      position: absolute;
+      inset: 0;
       overflow: hidden;
     }
 
@@ -1205,10 +1211,12 @@
 
   <!-- ============================================================ HERO -->
   <section class="hero" id="inicio">
-    <div class="hero-bg" id="hero-parallax"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-noise"></div>
-    <div class="hero-glow"></div>
+    <div class="hero-bg-clip">
+      <div class="hero-bg" id="hero-parallax"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-noise"></div>
+      <div class="hero-glow"></div>
+    </div>
 
     <div class="container">
       <div class="hero-content">
