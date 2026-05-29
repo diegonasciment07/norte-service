@@ -11,10 +11,7 @@
   <meta property="og:url"         content="https://norteservice.online/">
   <meta property="og:title"       content="Norte Service | Manutenção Profissional em Curitiba e Florianópolis">
   <meta property="og:description" content="Telhados, reformas, elétrica, hidráulica, pintura e muito mais. Equipe certificada, atendimento 24h e orçamento 100% gratuito.">
-  <meta property="og:image"        content="https://norteservice.online/Imagens/og-image.svg">
-  <meta property="og:image:type"   content="image/svg+xml">
-  <meta property="og:image:width"  content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image"        content="https://norteservice.online/Imagens/servico-norte.png">
   <meta property="og:image:alt"    content="Norte Service — Manutenção Profissional em Curitiba e Florianópolis">
   <meta property="og:locale"       content="pt_BR">
   <meta property="og:site_name"    content="Norte Service">
@@ -23,7 +20,7 @@
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="Norte Service | Manutenção Profissional em Curitiba e Florianópolis">
   <meta name="twitter:description" content="Telhados, reformas, elétrica, hidráulica, pintura e muito mais. Orçamento 100% gratuito.">
-  <meta name="twitter:image"       content="https://norteservice.online/Imagens/og-image.svg">
+  <meta name="twitter:image"       content="https://norteservice.online/Imagens/servico-norte.png">
 
   <!-- SEO técnico -->
   <link rel="canonical" href="https://norteservice.online/">
@@ -1750,10 +1747,10 @@
           </a>
 
           <div class="footer-contacts">
-            <a class="footer-contact" href="#contato" onclick="event.preventDefault();window.open('https://wa.me/5541996768324?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F','_blank')">
+            <a class="footer-contact" href="https://wa.me/5541996768324?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
               Curitiba: (41) 99676-8324
             </a>
-            <a class="footer-contact" href="#contato" onclick="event.preventDefault();window.open('https://wa.me/5548991012627?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F','_blank')">
+            <a class="footer-contact" href="https://wa.me/5548991012627?text=Ol%C3%A1%20Norte%20Service!%20Vi%20o%20site%20de%20voc%C3%AAs%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20de%20manuten%C3%A7%C3%A3o.%20Podem%20me%20ajudar%3F" target="_blank" rel="noopener">
               Florianópolis: (48) 99101-2627
             </a>
             <a class="footer-contact" href="mailto:norteservico2025@gmail.com">
@@ -1950,7 +1947,7 @@
 
         const msg = `Olá Norte Service! Vi o site de vocês e gostaria de orçamento. Podem me ajudar?\n\n*Nome:* ${nome}\n*Cidade:* ${cidade}\n*Serviço:* ${servico}`;
 
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: servico, content_category: cidade });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: servico, content_category: cidade, value: 0, currency: 'BRL' });
         window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
       });
 
